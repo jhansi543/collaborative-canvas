@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Drawing Canvas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Collaborative Drawing Canvas</h1>
+            <div class="connection-status">
+                <span id="statusIndicator" class="status-dot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <section class="tool-section">
+                    <h3>Drawing Tools</h3>
+                    <div class="tools">
+                        <button id="brushTool" class="tool-btn active" title="Brush">
+                            🖌️ Brush
+                        </button>
+                        <button id="eraserTool" class="tool-btn" title="Eraser">
+                            🧹 Eraser
+                        </button>
+                    </div>
+                </section>
+
+                <section class="tool-section">
+                    <h3>Color & Size</h3>
+                    <div class="color-picker-group">
+                        <label for="colorPicker">Color:</label>
+                        <input type="color" id="colorPicker" value="#000000">
+                    </div>
+                    <div class="stroke-width-group">
+                        <label for="strokeWidth">Brush Size:</label>
+                        <input type="range" id="strokeWidth" min="1" max="50" value="3">
+                        <span id="strokeWidthValue">3</span>px
+                    </div>
+                </section>
+
+                <section class="tool-section">
+                    <h3>User Info</h3>
+                    <div id="userList" class="user-list">
+                        <p class="loading">Loading users...</p>
+                    </div>
+                </section>
+
+                <section class="tool-section">
+                    <h3>Actions</h3>
+                    <button id="undoBtn" class="action-btn">↶ Undo</button>
+                    <button id="redoBtn" class="action-btn">↷ Redo</button>
+                    <button id="clearCanvasBtn" class="action-btn clear">🗑️ Clear Canvas</button>
+                </section>
+            </aside>
+
+            <div class="canvas-container">
+                <canvas id="drawingCanvas"></canvas>
+                <div id="cursors" class="cursors-layer"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Tip: Open this page in multiple windows to see real-time collaboration</p>
+        </footer>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
